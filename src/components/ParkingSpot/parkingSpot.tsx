@@ -87,7 +87,6 @@ const ParkingSpot: React.FC<ParkingSpotProps> = ({
       return (
         <button
           className="text-white text-xs px-4 py-1 border border-white md:text-sm rounded bg-green-500 ml-2 hover:border-transparent hover:bg-white hover:text-orange-500"
-          // className="text-white text-sm px-4 py-2 border rounded border-white hover:border-transparent hover:text-blue-500 hover:bg-white"
           onClick={() => handleBookSpot(dayIndex)}
         >
           FREE TO BOOK

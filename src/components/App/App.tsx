@@ -15,6 +15,7 @@ import Navbar from "../Navbar/Navbar";
 import UserContext from "../UserContext/UserContext";
 import { getDocs, collection, addDoc } from "@firebase/firestore";
 import { auth, db } from "../../firebase";
+import messages from "../../data/messages.json";
 
 const AppContainer = styled.div`
   display: flex;
@@ -45,43 +46,6 @@ const TypingText = styled.div`
 `;
 
 const generateRandomMessage = () => {
-  const messages = [
-    "Това е мястото на шефа!",
-    "Не се научи да ползваш градския транспорт!",
-    "А да отслабнем, кога?",
-    "Пак ти ли? Паркингът е вторият ти дом!",
-    "Изненада! Твоето място те чакаше.",
-    "Колко пъти ще дойдеш? Има и други места!",
-    "Ех, ако колата можеше да си намери сама място...",
-    "И ти в паркинга? Мястото за VIP ли искаш?",
-    "Поздравления! Откри тайното място.",
-    "Спряхме времето, докато паркираш.",
-    "Твоето място те обича - винаги се връщаш!",
-    "Елате пак! Паркингът ни има нужда от теб.",
-    "И този ден да мине без драскотини.",
-    "Пак на това място? Може би трябва да го купиш!",
-    "Твоята кола вече мисли, че това е нейният дом.",
-    "Спряхме времето, докато паркираш.",
-    "Толкова бързо се върна, че мястото още те помни!",
-    "О, изненада, ти пак ли?",
-    "Е, да! Това място е по-популярно от звездите в Instagram.",
-    "Хей, не забравяй, че колелата трябва да сочат напред!",
-    "Супергерой в паркирането, а?",
-    "Надяваме се някой ден да се научиш да паркираш по-бързо!",
-    "Ако паркирането беше спорт, ти сигурно щеше да си олимпийски шампион.",
-    "Колата ти вече иска да си тръгне оттук!",
-    "Ти си тук по-често, отколкото си у дома!",
-    "Мястото каза, че ти липсва.",
-    "Паркингът се чувства като твой личен гараж, нали?",
-    "Ако паркирането беше изкуство, ти щеше да си Пикасо.",
-    "Твоето паркиране ни вдъхновява всеки ден!",
-    "Паркираш така, сякаш колата ти е с автопилот.",
-    "Какво ще кажеш за паркинг сезонен абонамент?",
-    "Ето те пак! Мястото вече ти се радва.",
-    "Ти ли ни спаси от самотата, шофьор-герой?",
-    "Тази кола вече знае пътя към паркинга по-добре от теб.",
-    "Още едно паркиране за историята.",
-  ];
   const randomIndex = Math.floor(Math.random() * messages.length);
   return messages[randomIndex];
 };
@@ -112,7 +76,7 @@ const App: React.FC = () => {
       if (currentIndex < currentMessage.length) {
         setTypedMessage((prev) => prev + currentMessage[currentIndex]);
         currentIndex++;
-        const randomDelay = Math.random() * (120 - 50) + 50; // Adjust range as needed
+        const randomDelay = Math.random() * (120 - 50) + 50;
         setTimeout(typeLetter, randomDelay);
       }
     };
@@ -136,15 +100,14 @@ const App: React.FC = () => {
           setBookings(fetchedBookings);
         } catch (error) {
           console.error("Error fetching bookings:", error);
-          // Handle the error appropriately, perhaps by setting an error state
         }
       } else {
-        setUser(null); // Ensure user is set to null if not logged in
+        setUser(null);
       }
       setLoading(false);
     });
 
-    return () => unsubscribe(); // Clean up the subscription on unmount
+    return () => unsubscribe();
   }, [refreshKey]);
 
   if (loading) {
