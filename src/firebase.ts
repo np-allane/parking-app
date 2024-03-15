@@ -59,5 +59,3 @@ const deleteExpiredBookings = async () => {
 };
 
 deleteExpiredBookings();
-
-deleteExpiredBookings();

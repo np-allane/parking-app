@@ -10,67 +10,66 @@ const StyledForm = styled(Form)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 400px; /* Increased width */
-  padding: 40px; /* More padding for a better look */
+  width: 400px;
+  padding: 40px;
   background-color: white;
-  border-radius: 15px; /* Slightly more rounded corners */
-  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.15); /* Slightly deeper shadow for depth */
-  font-size: 1.1em; /* Bigger font size for better readability */
+  border-radius: 15px;
+  box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.15);
+  font-size: 1.1em;
 
   .form-group {
-    margin-bottom: 1.5em; /* More space between form groups */
+    margin-bottom: 1.5em;
   }
 
   .btn {
-    font-size: 1.05em; /* Bigger buttons for better clickability */
-    padding: 0.5em 1em; /* More padding in buttons */
+    font-size: 1.05em;
+    padding: 0.5em 1em;
   }
 
   .btn-link {
-    font-size: 0.9em; /* Stylish yet distinguished link button */
+    font-size: 0.9em;
   }
 
   .form-label {
     display: block;
     margin-bottom: 0.5rem;
-    text-align: left; // Aligns the label text to the left for consistency
+    text-align: left;
   }
 
   .form-control {
     display: block;
     width: 100%; // Ensures full-width inputs
-    padding: 0.375rem 0.75rem; // Adjust padding if needed
+    padding: 0.375rem 0.75rem;
   }
 
   .form-group {
-    margin-bottom: 1.5rem; // Consistent spacing between form groups
+    margin-bottom: 1.5rem;
   }
 
   .btn {
-    display: block; // Makes the button a block element
-    width: 100%; // Full width for the button
-    // ...other existing button styles...
+    display: block;
+    width: 100%;
   }
 
   h2 {
-    text-align: center; // Center-align the title
-    margin-bottom: 1.5rem; // Space between title and first input field
+    text-align: center;
+    margin-bottom: 1.5rem;
   }
 
   .button-group {
     display: flex;
-    justify-content: space-between; // Aligns one button to the left, the other to the right
-    margin-top: 1em; // Adds some space above the button group
+    justify-content: space-between;
+    margin-top: 1em;
   }
 
   .btn-link {
-    align-self: center; // Aligns the link button vertically in the center of the flex container
+    align-self: center;
   }
 
   .error-message {
-    color: red; // Sets the color of the error message to red
-    margin-top: 0.5rem; // Adds some space above the error message
-    font-size: 0.9em; // Adjust the font size as needed
+    color: red;
+    margin-top: 0.5rem;
+    font-size: 0.9em;
   }
 `;
 
