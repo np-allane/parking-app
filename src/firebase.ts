@@ -27,31 +27,37 @@ export const auth = getAuth(app);
 export const db = getFirestore(app);
 
 const deleteExpiredBookings = async () => {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+  try {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-  const twoDaysAgo = new Date(today);
-  twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+    const twoDaysAgo = new Date(today);
+    twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
 
-  const bookingsRef = collection(db, "bookings");
-  const q = query(
-    bookingsRef,
-    where("date", "<", Timestamp.fromDate(twoDaysAgo))
-  );
+    const bookingsRef = collection(db, "bookings");
+    const q = query(
+      bookingsRef,
+      where("date", "<", Timestamp.fromDate(twoDaysAgo))
+    );
 
-  const querySnapshot = await getDocs(q);
+    const querySnapshot = await getDocs(q);
 
-  if (!querySnapshot.empty) {
-    const batch = writeBatch(db);
-    querySnapshot.forEach((doc) => {
-      batch.delete(doc.ref as DocumentReference);
-    });
+    if (!querySnapshot.empty) {
+      const batch = writeBatch(db);
+      querySnapshot.forEach((doc) => {
+        batch.delete(doc.ref as DocumentReference);
+      });
 
-    await batch.commit();
-    console.log(`${querySnapshot.size} bookings older than two days deleted`);
-  } else {
-    console.log("No bookings to delete");
+      await batch.commit();
+      console.log(`${querySnapshot.size} bookings older than two days deleted`);
+    } else {
+      console.log("No bookings to delete");
+    }
+  } catch (error) {
+    console.error("Error deleting expired bookings:", error);
   }
 };
+
+deleteExpiredBookings();
 
 deleteExpiredBookings();

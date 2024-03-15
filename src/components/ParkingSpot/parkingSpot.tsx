@@ -79,14 +79,15 @@ const ParkingSpot: React.FC<ParkingSpotProps> = ({
 
     if (foundBooking) {
       return (
-        <span className="text-sm md:text-md lg:text-lg text-white truncate max-w-[calc(100%-1.5rem)]">
+        <span className="text-xs md:text-sm text-white py-1 px-2 rounded ml-2">
           @{foundBooking.userId.split("@")[0]}
         </span>
       );
     } else {
       return (
         <button
-          className="text-sm md:text-md lg:text-lg text-white bg-green-500 py-2 px-4 rounded"
+          className="text-white text-xs px-4 py-1 border border-white md:text-sm rounded bg-green-500 ml-2 hover:border-transparent hover:bg-white hover:text-orange-500"
+          // className="text-white text-sm px-4 py-2 border rounded border-white hover:border-transparent hover:text-blue-500 hover:bg-white"
           onClick={() => handleBookSpot(dayIndex)}
         >
           FREE TO BOOK
@@ -96,20 +97,25 @@ const ParkingSpot: React.FC<ParkingSpotProps> = ({
   };
 
   return (
-    <ParkingSpotContainer className="w-[150px] h-[250px] m-2 relative bg-blue-500 flex flex-col justify-between p-3">
+    <ParkingSpotContainer className="w-[150px] h-[250px] m-2 relative bg-blue-500 flex rounded flex-col justify-between p-3">
       <Number className="text-lg self-end text-white">{number}</Number>
-      <div className="absolute bottom-2 left-0 flex flex-col items-start space-y-1">
-        {weekDays.map((day, index) => (
-          <div key={index} className="flex items-center">
-            <span className="bg-white text-gray-800 text-base lg:text-lg font-bold py-1 pl-1 pr-2 rounded-r-full min-w-[50px] h-6 flex items-center justify-start">
-              {day}
-            </span>
-            <div className="relative flex-grow">
-              {getBookingForDay(index)}
-              <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white"></div>
+      <div className="absolute bottom-2 left-0 flex flex-col space-y-7">
+        {weekDays.map((day, index) => {
+          const isToday = index === 0;
+          const dayClass = isToday ? "bg-orange-400" : "bg-white";
+          return (
+            <div key={index} className="flex items-center">
+              <span
+                className={`text-gray-800 text-base lg:text-lg font-bold py-1 pl-1 pr-2 rounded-r-full min-w-[50px] h-6 flex items-center justify-start ${dayClass}`}
+              >
+                {day}
+              </span>
+              <div className="relative flex-grow">
+                {getBookingForDay(index)}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </ParkingSpotContainer>
   );

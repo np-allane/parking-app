@@ -11,11 +11,37 @@ export const ParkingSpotContainer: React.FC<ParkingSpotContainerProps> = ({
   onClick,
   className,
 }) => {
-  const inlineStyle = { minWidth: "300px", minHeight: "400px" };
+  const getWidth = () => {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 480) {
+      return "100px";
+    } else if (screenWidth < 768) {
+      return "200px";
+    } else {
+      return "300px";
+    }
+  };
+
+  const getHeight = () => {
+    const screenWidth = window.innerWidth;
+    if (screenWidth < 480) {
+      return "200px";
+    } else if (screenWidth < 768) {
+      return "300px";
+    } else {
+      return "400px";
+    }
+  };
+
+  const inlineStyle = {
+    minWidth: getWidth(),
+    minHeight: getHeight(),
+    border: "1px solid black",
+  };
 
   return (
     <div
-      className={`border border-black  bg-gray-800 ${className}`}
+      className={`border border-black bg-gray-800 ${className}`}
       onClick={onClick}
       style={inlineStyle}
     >
